@@ -1,3 +1,5 @@
+import { MapPinIcon, PhoneIcon, MailIcon, ClockIcon } from "lucide-react";
+
 export const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -57,21 +59,21 @@ export const ContactPage = () => {
             </h2>
             <div className="mt-6 space-y-4">
               <div className="flex items-center">
-                <MapPin className="h-6 w-6 text-blue-600" />
+                <MapPinIcon className="h-6 w-6 text-blue-600" />
                 <span className="ml-3 text-gray-600">
                   123 Tech Street, Seattle, WA 98101
                 </span>
               </div>
               <div className="flex items-center">
-                <Phone className="h-6 w-6 text-blue-600" />
+                <PhoneIcon className="h-6 w-6 text-blue-600" />
                 <span className="ml-3 text-gray-600">(555) 123-4567</span>
               </div>
               <div className="flex items-center">
-                <Mail className="h-6 w-6 text-blue-600" />
+                <MailIcon className="h-6 w-6 text-blue-600" />
                 <span className="ml-3 text-gray-600">help@techfixpro.com</span>
               </div>
               <div className="flex items-center">
-                <Clock className="h-6 w-6 text-blue-600" />
+                <ClockIcon className="h-6 w-6 text-blue-600" />
                 <div className="ml-3 text-gray-600">
                   <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
                   <p>Saturday: 10:00 AM - 5:00 PM</p>

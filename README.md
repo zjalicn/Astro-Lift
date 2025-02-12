@@ -1,5 +1,6 @@
 # 🌒 astro-starter
-Created this as a light weight solution for building static websites with beautiful uis
+
+Created this template as a light weight solution for building static websites with beautiful uis
 
 # Astro Starter Kit: Basics
 

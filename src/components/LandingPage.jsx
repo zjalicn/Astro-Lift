@@ -11,7 +11,7 @@ import {
   WifiIcon,
 } from "lucide-react";
 
-const LandingPage = () => {
+export const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -151,5 +151,3 @@ const LandingPage = () => {
     </div>
   );
 };
-
-export default LandingPage;
