@@ -1,3 +1,5 @@
+import { Star } from "lucide-react";
+
 export const ReviewsPage = () => {
   const reviews = [
     {
@@ -27,35 +29,37 @@ export const ReviewsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background-secondary">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900">Customer Reviews</h1>
-          <p className="mt-4 text-xl text-gray-600">
+          <h1 className="text-4xl font-bold text-foreground">
+            Customer Reviews
+          </h1>
+          <p className="mt-4 text-xl text-foreground-secondary">
             See what our customers say about us
           </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg p-6">
+            <div key={index} className="bg-background rounded-lg shadow-lg p-6">
               <div className="flex items-center">
                 <div className="flex-1">
-                  <h3 className="font-medium text-gray-900">{review.name}</h3>
-                  <p className="text-sm text-gray-500">{review.date}</p>
+                  <h3 className="font-medium text-foreground">{review.name}</h3>
+                  <p className="text-sm text-muted-foreground">{review.date}</p>
                 </div>
                 <div className="flex">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-5 w-5 text-yellow-400 fill-current"
+                      className="h-5 w-5 text-primary fill-current"
                     />
                   ))}
                 </div>
               </div>
               <div className="mt-4">
-                <p className="text-gray-600">{review.review}</p>
-                <p className="mt-2 text-sm text-blue-600">{review.service}</p>
+                <p className="text-foreground-secondary">{review.review}</p>
+                <p className="mt-2 text-sm text-primary">{review.service}</p>
               </div>
             </div>
           ))}

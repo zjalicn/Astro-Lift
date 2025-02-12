@@ -13,24 +13,30 @@ import {
 
 export const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative bg-gray-900">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-gray-900 opacity-90"></div>
+      <div className="relative bg-primary">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-background opacity-90"></div>
         <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-extrabold tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl">
               Expert Computer Repair in Seattle
             </h1>
-            <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="mt-6 text-xl text-primary-foreground/80 max-w-3xl mx-auto">
               Fast, reliable repairs for all your devices. Most repairs
               completed same-day with our lifetime warranty.
             </p>
             <div className="mt-10 flex justify-center gap-4">
-              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+              <button
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
+                               text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
+              >
                 Book Repair <ChevronRightIcon className="ml-2 h-5 w-5" />
               </button>
-              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50">
+              <button
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
+                               text-primary bg-background hover:bg-background-secondary transition-colors"
+              >
                 Get Quote <PhoneIcon className="ml-2 h-5 w-5" />
               </button>
             </div>
@@ -39,13 +45,13 @@ export const LandingPage = () => {
       </div>
 
       {/* Services Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-16 bg-background-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900">
+            <h2 className="text-3xl font-extrabold text-foreground">
               Our Services
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-foreground-secondary">
               Professional repair services for all your devices
             </p>
           </div>
@@ -70,15 +76,17 @@ export const LandingPage = () => {
             ].map((service, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-background p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto">
+                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground mx-auto">
                   <service.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 text-xl font-medium text-gray-900 text-center">
+                <h3 className="mt-4 text-xl font-medium text-foreground text-center">
                   {service.title}
                 </h3>
-                <p className="mt-2 text-gray-600 text-center">{service.desc}</p>
+                <p className="mt-2 text-foreground-secondary text-center">
+                  {service.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -89,7 +97,7 @@ export const LandingPage = () => {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900">
+            <h2 className="text-3xl font-extrabold text-foreground">
               Why Choose Us
             </h2>
           </div>
@@ -117,13 +125,13 @@ export const LandingPage = () => {
               },
             ].map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 text-blue-600 mx-auto">
+                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary/10 text-primary mx-auto">
                   <feature.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                <h3 className="mt-4 text-lg font-medium text-foreground">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-gray-600">{feature.desc}</p>
+                <p className="mt-2 text-foreground-secondary">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -131,17 +139,20 @@ export const LandingPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-blue-700">
+      <div className="bg-primary">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-white">
+            <h2 className="text-3xl font-extrabold text-primary-foreground">
               Ready to fix your device?
             </h2>
-            <p className="mt-4 text-xl text-blue-100">
+            <p className="mt-4 text-xl text-primary-foreground/80">
               Get a free diagnostic consultation today
             </p>
             <div className="mt-8 flex justify-center gap-4">
-              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50">
+              <button
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
+                               text-primary bg-background hover:bg-background-secondary transition-colors"
+              >
                 Call Now: (555) 123-4567
               </button>
             </div>

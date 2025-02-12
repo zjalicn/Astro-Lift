@@ -1,6 +1,7 @@
 ---
-import '../styles/global.css';
-import NavBar from '../components/NavBar';
+import "../styles/global.css";
+import { NavBar } from "../components/NavBar";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 interface Props {
   title?: string;
@@ -17,11 +18,34 @@ const { title = "Tech Fix Pro" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      // Initialize theme
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      
+      window.localStorage.setItem('theme', theme);
+    </script>
   </head>
-  <body>
+  <body class="bg-background text-foreground">
     <NavBar client:load />
-    <div class="pt-16"> <!-- Add padding to account for fixed navbar -->
+    <div class="pt-16">
       <slot />
+    </div>
+    <div class="fixed bottom-4 right-4">
+      <ThemeToggle client:load />
     </div>
   </body>
 </html>
