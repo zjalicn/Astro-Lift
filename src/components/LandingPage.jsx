@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import {
   PhoneIcon,
@@ -16,6 +15,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+
+const GradientBorder = ({ children, className = "" }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    className={`p-[1px] rounded-xl bg-gradient-to-r from-primary/50 via-primary to-primary/50 ${className}`}
+  >
+    {children}
+  </motion.div>
+);
 
 export const LandingPage = () => {
   const stats = [
@@ -181,49 +191,50 @@ export const LandingPage = () => {
                 ],
               },
             ].map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.6 + index * 0.2,
-                }}
-                className="flex"
-              >
-                <Card className="h-full bg-card">
-                  <CardContent className="pt-6 p-8">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary text-primary-foreground mx-auto">
-                      <service.icon className="h-8 w-8" />
-                    </div>
-                    <h3 className="mt-6 text-2xl font-semibold text-foreground text-center">
-                      {service.title}
-                    </h3>
-                    <p className="mt-4 text-foreground-secondary text-center text-lg">
-                      {service.desc}
-                    </p>
-                    <Separator className="my-6" />
-                    <ul className="space-y-3">
-                      {service.features.map((feature, i) => (
-                        <li
-                          key={i}
-                          className="flex items-center gap-2 text-foreground-secondary"
-                        >
-                          <CheckCircle2 className="h-5 w-5 text-primary" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button className="w-full mt-8">Learn More</Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <GradientBorder key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.6 + index * 0.2,
+                  }}
+                  className="flex"
+                >
+                  <Card className="h-full bg-card">
+                    <CardContent className="pt-6 p-8">
+                      <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary text-primary-foreground mx-auto">
+                        <service.icon className="h-8 w-8" />
+                      </div>
+                      <h3 className="mt-6 text-2xl font-semibold text-foreground text-center">
+                        {service.title}
+                      </h3>
+                      <p className="mt-4 text-foreground-secondary text-center text-lg">
+                        {service.desc}
+                      </p>
+                      <Separator className="my-6" />
+                      <ul className="space-y-3">
+                        {service.features.map((feature, i) => (
+                          <li
+                            key={i}
+                            className="flex items-center gap-2 text-foreground-secondary"
+                          >
+                            <CheckCircle2 className="h-5 w-5 text-primary" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button className="w-full mt-8">Learn More</Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </GradientBorder>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Remaining sections follow similar simplification */}
+      {/* Why Choose Us Section */}
       <div className="py-24 bg-background-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -245,7 +256,60 @@ export const LandingPage = () => {
               The Tech Fix Pro Difference
             </motion.h2>
           </div>
-          {/* Rest of the content remains similar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {[
+              {
+                icon: Clock3,
+                title: "Same-Day Service",
+                desc: "Most repairs completed within hours",
+              },
+              {
+                icon: ShieldIcon,
+                title: "Lifetime Warranty",
+                desc: "All repairs backed by our guarantee",
+              },
+              {
+                icon: WrenchIcon,
+                title: "Certified Experts",
+                desc: "Factory-trained technicians",
+              },
+              {
+                icon: StarIcon,
+                title: "5-Star Service",
+                desc: "Consistently top-rated in Seattle",
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.4 + index * 0.2,
+                }}
+                className="flex"
+              >
+                <Card className="bg-card hover:shadow-lg transition-all duration-300 w-full">
+                  <CardContent className="pt-6 p-8 text-center">
+                    <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary/10 text-primary mx-auto">
+                      <feature.icon className="h-8 w-8" />
+                    </div>
+                    <h3 className="mt-6 text-xl font-semibold text-foreground">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-4 text-foreground-secondary text-lg">
+                      {feature.desc}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
