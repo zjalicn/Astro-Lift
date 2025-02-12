@@ -1,4 +1,9 @@
 import { MapPinIcon, PhoneIcon, MailIcon, ClockIcon } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 export const ContactPage = () => {
   return (
@@ -12,56 +17,40 @@ export const ContactPage = () => {
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="bg-background rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-foreground">
-              Send us a message
-            </h2>
-            <form className="mt-6 space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-foreground">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full rounded-md border-border bg-background text-foreground shadow-sm 
-                           focus:border-primary focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="mt-1 block w-full rounded-md border-border bg-background text-foreground shadow-sm 
-                           focus:border-primary focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground">
-                  Message
-                </label>
-                <textarea
-                  rows={4}
-                  className="mt-1 block w-full rounded-md border-border bg-background text-foreground shadow-sm 
-                           focus:border-primary focus:ring-primary"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md 
-                         hover:bg-primary/90 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Send us a message</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" placeholder="Your name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="your@email.com" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea
+                    id="message"
+                    placeholder="How can we help?"
+                    rows={4}
+                  />
+                </div>
+                <Button type="submit" className="w-full">
+                  Send Message
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
 
-          <div className="bg-background rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-foreground">
-              Contact Information
-            </h2>
-            <div className="mt-6 space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Contact Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <div className="flex items-center">
                 <MapPinIcon className="h-6 w-6 text-primary" />
                 <span className="ml-3 text-foreground-secondary">
@@ -88,8 +77,8 @@ export const ContactPage = () => {
                   <p>Sunday: Closed</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

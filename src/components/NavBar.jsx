@@ -1,9 +1,16 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React from "react";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 
 export const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
@@ -24,7 +31,7 @@ export const NavBar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
+          <div className="hidden md:flex md:items-center md:space-x-4">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -34,48 +41,40 @@ export const NavBar = () => {
                 {item.name}
               </a>
             ))}
-            <a
-              href="/book"
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
-            >
-              Book Repair
-            </a>
+            <Button asChild>
+              <a href="/book">Book Repair</a>
+            </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu */}
           <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary focus:outline-none"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Tech Fix Pro</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col space-y-3 mt-4">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="text-foreground hover:text-primary px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                  <Button asChild className="w-full mt-4">
+                    <a href="/book">Book Repair</a>
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
-            >
-              {item.name}
-            </a>
-          ))}
-          <a
-            href="/book"
-            className="bg-primary text-primary-foreground block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/90"
-          >
-            Book Repair
-          </a>
         </div>
       </div>
     </nav>

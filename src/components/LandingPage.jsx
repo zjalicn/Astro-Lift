@@ -10,6 +10,8 @@ import {
   SmartphoneIcon,
   WifiIcon,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const LandingPage = () => {
   return (
@@ -27,18 +29,12 @@ export const LandingPage = () => {
               completed same-day with our lifetime warranty.
             </p>
             <div className="mt-10 flex justify-center gap-4">
-              <button
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
-                               text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
-              >
-                Book Repair <ChevronRightIcon className="ml-2 h-5 w-5" />
-              </button>
-              <button
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
-                               text-primary bg-background hover:bg-background-secondary transition-colors"
-              >
-                Get Quote <PhoneIcon className="ml-2 h-5 w-5" />
-              </button>
+              <Button size="lg" className="gap-2">
+                Book Repair <ChevronRightIcon className="h-5 w-5" />
+              </Button>
+              <Button size="lg" variant="secondary" className="gap-2">
+                Get Quote <PhoneIcon className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
@@ -74,20 +70,19 @@ export const LandingPage = () => {
                 desc: "WiFi setup, troubleshooting, and security",
               },
             ].map((service, index) => (
-              <div
-                key={index}
-                className="bg-background p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground mx-auto">
-                  <service.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-4 text-xl font-medium text-foreground text-center">
-                  {service.title}
-                </h3>
-                <p className="mt-2 text-foreground-secondary text-center">
-                  {service.desc}
-                </p>
-              </div>
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground mx-auto">
+                    <service.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-4 text-xl font-medium text-foreground text-center">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-foreground-secondary text-center">
+                    {service.desc}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -124,15 +119,19 @@ export const LandingPage = () => {
                 desc: "Hundreds of happy customers",
               },
             ].map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary/10 text-primary mx-auto">
-                  <feature.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-4 text-lg font-medium text-foreground">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-foreground-secondary">{feature.desc}</p>
-              </div>
+              <Card key={index} className="border-0 shadow-none">
+                <CardContent className="pt-6 text-center">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary/10 text-primary mx-auto">
+                    <feature.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-medium text-foreground">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-foreground-secondary">
+                    {feature.desc}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -149,12 +148,9 @@ export const LandingPage = () => {
               Get a free diagnostic consultation today
             </p>
             <div className="mt-8 flex justify-center gap-4">
-              <button
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
-                               text-primary bg-background hover:bg-background-secondary transition-colors"
-              >
+              <Button size="lg" variant="secondary" className="gap-2">
                 Call Now: (555) 123-4567
-              </button>
+              </Button>
             </div>
           </div>
         </div>
