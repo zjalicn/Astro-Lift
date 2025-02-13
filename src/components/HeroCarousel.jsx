@@ -4,12 +4,16 @@ import { ArrowRight, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+
 const HeroCarousel = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [nextImageIndex, setNextImageIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const images = ["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"];
+  const images = [hero1.src, hero2.src, hero3.src];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -93,7 +97,7 @@ const HeroCarousel = () => {
             className="mt-6 text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
           >
             Fast, reliable repairs for all your devices. Most repairs completed
-            same-day with our lifetime warranty.
+            same-day with our lifetime warranty.!!!
           </motion.p>
 
           <motion.div
@@ -102,13 +106,13 @@ const HeroCarousel = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
           >
-            <Button size="lg" className="gap-2 text-lg h-12">
+            <Button size="lg" className="gap-2 text-lg h-12 w-96">
               Book Repair <ArrowRight className="h-5 w-5" />
             </Button>
             <Button
               size="lg"
-              variant="secondary"
-              className="gap-2 text-lg h-12"
+              variant="outline"
+              className="gap-2 text-lg h-12 w-96"
             >
               Get Quote <PhoneIcon className="h-5 w-5" />
             </Button>

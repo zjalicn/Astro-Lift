@@ -22,7 +22,7 @@ export const LandingPage = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <HeroCarousel />
+      <HeroCarousel client:load />
 
       {/* Services Section */}
       <div className="py-24 bg-background">
