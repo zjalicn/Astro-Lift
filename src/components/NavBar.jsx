@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,10 +8,21 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import logo from "@/assets/logo.png";
 
 export const NavBar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
@@ -21,11 +32,18 @@ export const NavBar = () => {
   ];
 
   return (
-    <nav className="bg-background border-b border-border fixed w-full z-50">
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background shadow-md" : ""
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
-          <div className="flex-shrink-0 flex items-center">
+          <div
+            className="flex-shrink-0 flex items-center cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
             <img src={logo.src} alt="Tech Fix Pro" className="h-10" />
           </div>
 
@@ -35,12 +53,14 @@ export const NavBar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                className={`hover:text-primary/90 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isScrolled ? "text-foreground" : "text-white"
+                }`}
               >
                 {item.name}
               </a>
             ))}
-            <Button asChild className="w-40">
+            <Button asChild className="w-40 text-white">
               <a href="/book">Book Repair</a>
             </Button>
           </div>
@@ -49,7 +69,11 @@ export const NavBar = () => {
           <div className="md:hidden flex items-center">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={isScrolled ? "" : "text-white hover:bg-white/10"}
+                >
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>

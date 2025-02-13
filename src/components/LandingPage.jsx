@@ -10,6 +10,9 @@ import {
   LaptopIcon,
   SmartphoneIcon,
   WifiIcon,
+  MapPinIcon,
+  MailIcon,
+  Clock3Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { GradientBorder } from "./GradientBorder";
 import HeroCarousel from "./HeroCarousel";
+import ContactSection from "./ContactSection";
 
 export const LandingPage = () => {
   return (
@@ -258,6 +262,9 @@ export const LandingPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact & Map Section */}
+      <ContactSection />
     </div>
   );
 };

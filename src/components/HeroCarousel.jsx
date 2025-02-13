@@ -20,7 +20,6 @@ const HeroCarousel = () => {
       setIsTransitioning(true);
       setNextImageIndex((currentImageIndex + 1) % images.length);
 
-      // Wait for fade animation to complete before updating current image
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
         setIsTransitioning(false);
@@ -38,7 +37,7 @@ const HeroCarousel = () => {
   ];
 
   return (
-    <div className="relative h-screen overflow-hidden bg-black">
+    <div className="relative h-screen w-full overflow-hidden bg-black -mt-16">
       {/* Background images */}
       <div className="absolute inset-0">
         {/* Next image (positioned behind) */}
@@ -68,7 +67,7 @@ const HeroCarousel = () => {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 py-40 sm:px-6 lg:px-8">
+      <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -125,7 +124,10 @@ const HeroCarousel = () => {
             className="mt-20 grid grid-cols-2 gap-8 sm:grid-cols-4"
           >
             {stats.map((stat, index) => (
-              <div key={index} className="flex flex-col items-center">
+              <div
+                key={index}
+                className="flex flex-col items-center bg-foreground/50 rounded-md p-4"
+              >
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -134,7 +136,7 @@ const HeroCarousel = () => {
                     delay: 0.8 + index * 0.2,
                     type: "spring",
                   }}
-                  className="text-3xl font-bold text-white"
+                  className="text-3xl font-bold text-white "
                 >
                   {stat.value}
                 </motion.div>

@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  overscroll-behavior: none;
+}
+
+body {
+  overscroll-behavior: none;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
 @layer base {
   :root {
     --background: 212 100% 100%;
