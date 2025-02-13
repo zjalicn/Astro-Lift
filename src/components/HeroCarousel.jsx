@@ -68,7 +68,7 @@ const HeroCarousel = () => {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 py-40 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -97,7 +97,7 @@ const HeroCarousel = () => {
             className="mt-6 text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
           >
             Fast, reliable repairs for all your devices. Most repairs completed
-            same-day with our lifetime warranty.!!!
+            same-day with our lifetime warranty.
           </motion.p>
 
           <motion.div
@@ -111,7 +111,7 @@ const HeroCarousel = () => {
             </Button>
             <Button
               size="lg"
-              variant="outline"
+              variant="outlineWhite"
               className="gap-2 text-lg h-12 w-96"
             >
               Get Quote <PhoneIcon className="h-5 w-5" />

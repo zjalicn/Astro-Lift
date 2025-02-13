@@ -9,6 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
+import logo from "@/assets/logo.png";
 
 export const NavBar = () => {
   const navigation = [
@@ -25,9 +26,7 @@ export const NavBar = () => {
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="text-xl font-bold text-primary">
-              Tech Fix Pro
-            </a>
+            <img src={logo.src} alt="Tech Fix Pro" className="h-10" />
           </div>
 
           {/* Desktop Navigation */}
@@ -41,7 +40,7 @@ export const NavBar = () => {
                 {item.name}
               </a>
             ))}
-            <Button asChild>
+            <Button asChild className="w-40">
               <a href="/book">Book Repair</a>
             </Button>
           </div>

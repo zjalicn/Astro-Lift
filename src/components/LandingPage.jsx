@@ -33,7 +33,7 @@ export const LandingPage = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Badge variant="outline" className="mb-4">
+              <Badge variant="outline" className="mb-4 bg-secondary">
                 Our Services
               </Badge>
             </motion.div>
