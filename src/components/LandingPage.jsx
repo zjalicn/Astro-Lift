@@ -15,112 +15,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-
-const GradientBorder = ({ children, className = "" }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-    className={`p-[1px] rounded-xl bg-gradient-to-r from-primary/50 via-primary to-primary/50 ${className}`}
-  >
-    {children}
-  </motion.div>
-);
+import { GradientBorder } from "./GradientBorder";
+import HeroCarousel from "./HeroCarousel";
 
 export const LandingPage = () => {
-  const stats = [
-    { value: "2K+", label: "Repairs Completed" },
-    { value: "98%", label: "Satisfaction Rate" },
-    { value: "24/7", label: "Support Available" },
-    { value: "15+", label: "Years Experience" },
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-background"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-background/10 via-primary/5 to-background/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Badge variant="secondary" className="mb-8 inline-flex">
-                ⭐️ Trusted by 2,000+ Customers in Seattle
-              </Badge>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-4xl font-extrabold tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl"
-            >
-              <span className="block">Expert Computer Repair</span>
-              <span className="block">in Seattle</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-6 text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed"
-            >
-              Fast, reliable repairs for all your devices. Most repairs
-              completed same-day with our lifetime warranty.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <Button size="lg" className="gap-2 text-lg h-12">
-                Book Repair <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="secondary"
-                className="gap-2 text-lg h-12"
-              >
-                Get Quote <PhoneIcon className="h-5 w-5" />
-              </Button>
-            </motion.div>
-
-            {/* Stats Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="mt-20 grid grid-cols-2 gap-8 sm:grid-cols-4"
-            >
-              {stats.map((stat, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.8 + index * 0.2,
-                      type: "spring",
-                    }}
-                    className="text-3xl font-bold text-primary-foreground"
-                  >
-                    {stat.value}
-                  </motion.div>
-                  <div className="mt-2 text-sm text-primary-foreground/80">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </div>
+      <HeroCarousel />
 
       {/* Services Section */}
       <div className="py-24 bg-background">
@@ -147,7 +49,7 @@ export const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-4 text-xl text-foreground-secondary"
+              className="mt-4 text-xl text-muted-foreground"
             >
               Expert solutions for all your technology needs
             </motion.p>
@@ -201,7 +103,7 @@ export const LandingPage = () => {
                   }}
                   className="flex"
                 >
-                  <Card className="h-full bg-card">
+                  <Card className="h-full bg-card w-full">
                     <CardContent className="pt-6 p-8">
                       <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary text-primary-foreground mx-auto">
                         <service.icon className="h-8 w-8" />
@@ -209,7 +111,7 @@ export const LandingPage = () => {
                       <h3 className="mt-6 text-2xl font-semibold text-foreground text-center">
                         {service.title}
                       </h3>
-                      <p className="mt-4 text-foreground-secondary text-center text-lg">
+                      <p className="mt-4 text-muted-foreground text-center text-lg">
                         {service.desc}
                       </p>
                       <Separator className="my-6" />
@@ -217,7 +119,7 @@ export const LandingPage = () => {
                         {service.features.map((feature, i) => (
                           <li
                             key={i}
-                            className="flex items-center gap-2 text-foreground-secondary"
+                            className="flex items-center gap-2 text-muted-foreground"
                           >
                             <CheckCircle2 className="h-5 w-5 text-primary" />
                             <span>{feature}</span>
@@ -235,7 +137,7 @@ export const LandingPage = () => {
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="py-24 bg-background-secondary">
+      <div className="py-24 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
@@ -302,7 +204,7 @@ export const LandingPage = () => {
                     <h3 className="mt-6 text-xl font-semibold text-foreground">
                       {feature.title}
                     </h3>
-                    <p className="mt-4 text-foreground-secondary text-lg">
+                    <p className="mt-4 text-muted-foreground text-lg">
                       {feature.desc}
                     </p>
                   </CardContent>
