@@ -1,14 +1,12 @@
-import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
-import { Clock3Icon } from "lucide-react";
+import { MailIcon, MapPinIcon, PhoneIcon, Clock3Icon } from "lucide-react";
+import { COMPANY_CONTENT } from "@/content";
 
 const API_KEY = import.meta.env.PUBLIC_GOOGLE_API_KEY;
 const PLACE_ID = import.meta.env.PUBLIC_GOOGLE_PLACE_ID;
 
-console.log(
-  `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=place_id:${PLACE_ID}&zoom=15`
-);
-
 const ContactSection = () => {
+  const { name, phone, email, address, hours } = COMPANY_CONTENT;
+
   return (
     <div className="bg-background">
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
@@ -29,7 +27,7 @@ const ContactSection = () => {
           {/* Contact Info */}
           <div className="flex flex-col justify-center space-y-6">
             <div>
-              <h3 className="text-3xl font-bold">Tech Fix Pro</h3>
+              <h3 className="text-3xl font-bold">{name}</h3>
               <p className="mt-2 text-lg">
                 Your Trusted Technology Repair Partner
               </p>
@@ -39,37 +37,37 @@ const ContactSection = () => {
               <div className="flex items-start gap-3">
                 <MapPinIcon className="h-6 w-6 text-primary mt-1" />
                 <div>
-                  <p className="text-foreground">123 Tech Street</p>
-                  <p className="text-foreground">Seattle, WA 98101</p>
+                  <p className="text-foreground">{address.street}</p>
+                  <p className="text-foreground">{`${address.city}, ${address.state} ${address.zip}`}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <PhoneIcon className="h-6 w-6 text-primary" />
                 <a
-                  href="tel:(555)123-4567"
+                  href={`tel:${phone.replace(/\D/g, "")}`}
                   className="text-foreground hover:text-primary transition-colors"
                 >
-                  (555) 123-4567
+                  {phone}
                 </a>
               </div>
 
               <div className="flex items-center gap-3">
                 <MailIcon className="h-6 w-6 text-primary" />
                 <a
-                  href="mailto:help@techfixpro.com"
+                  href={`mailto:${email}`}
                   className="text-foreground hover:text-primary transition-colors"
                 >
-                  help@techfixpro.com
+                  {email}
                 </a>
               </div>
 
               <div className="flex items-center gap-3">
                 <Clock3Icon className="h-6 w-6 text-primary" />
                 <div>
-                  <p className="text-foreground">Mon-Fri: 9:00 AM - 7:00 PM</p>
-                  <p className="text-foreground">Sat: 10:00 AM - 5:00 PM</p>
-                  <p className="text-foreground">Sun: Closed</p>
+                  <p className="text-foreground">Mon-Fri: {hours.weekday}</p>
+                  <p className="text-foreground">Sat: {hours.saturday}</p>
+                  <p className="text-foreground">Sun: {hours.sunday}</p>
                 </div>
               </div>
             </div>

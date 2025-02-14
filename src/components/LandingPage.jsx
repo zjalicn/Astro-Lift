@@ -19,7 +19,20 @@ import { GradientBorder } from "@/components/ui/GradientBorder";
 import HeroCarousel from "@/components/landing-page/HeroCarousel";
 import ContactSection from "@/components/landing-page/ContactSection";
 import { GoogleReviews } from "@/components/landing-page/GoogleReviews";
-import { PHONE_NUMBER } from "@/constants";
+import { LANDING_PAGE_CONTENT, COMPANY_CONTENT } from "@/content";
+
+const serviceIcons = {
+  "Computer Repair": LaptopIcon,
+  "Phone Repair": SmartphoneIcon,
+  "Network Solutions": WifiIcon,
+};
+
+const featureIcons = {
+  "Same-Day Service": Clock3,
+  "Lifetime Warranty": ShieldIcon,
+  "Certified Experts": WrenchIcon,
+  "5-Star Service": StarIcon,
+};
 
 export const LandingPage = () => {
   return (
@@ -37,7 +50,7 @@ export const LandingPage = () => {
               transition={{ duration: 0.5 }}
             >
               <Badge variant="outline" className="mb-4 bg-secondary">
-                Our Services
+                {LANDING_PAGE_CONTENT.services.section.badge}
               </Badge>
             </motion.div>
             <motion.h2
@@ -46,7 +59,7 @@ export const LandingPage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-4xl font-bold text-foreground"
             >
-              Professional Repair Services
+              {LANDING_PAGE_CONTENT.services.section.title}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -54,7 +67,7 @@ export const LandingPage = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-4 text-xl text-muted-foreground"
             >
-              Expert solutions for all your technology needs
+              {LANDING_PAGE_CONTENT.services.section.subtitle}
             </motion.p>
           </div>
 
@@ -64,77 +77,49 @@ export const LandingPage = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {[
-              {
-                icon: LaptopIcon,
-                title: "Computer Repair",
-                desc: "Desktop & laptop repairs, upgrades, and maintenance",
-                features: [
-                  "Hardware Diagnostics",
-                  "Software Issues",
-                  "Data Recovery",
-                ],
-              },
-              {
-                icon: SmartphoneIcon,
-                title: "Phone Repair",
-                desc: "Screen replacement, battery service, and more",
-                features: [
-                  "Screen Repairs",
-                  "Battery Replacement",
-                  "Water Damage",
-                ],
-              },
-              {
-                icon: WifiIcon,
-                title: "Network Solutions",
-                desc: "WiFi setup, troubleshooting, and security",
-                features: [
-                  "Network Setup",
-                  "Security Config",
-                  "Speed Optimization",
-                ],
-              },
-            ].map((service, index) => (
-              <GradientBorder key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.6 + index * 0.2,
-                  }}
-                  className="flex"
-                >
-                  <Card className="h-full bg-card w-full">
-                    <CardContent className="pt-6 p-8">
-                      <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary text-primary-foreground mx-auto">
-                        <service.icon className="h-8 w-8" />
-                      </div>
-                      <h3 className="mt-6 text-2xl font-semibold text-foreground text-center">
-                        {service.title}
-                      </h3>
-                      <p className="mt-4 text-muted-foreground text-center text-lg">
-                        {service.desc}
-                      </p>
-                      <Separator className="my-6" />
-                      <ul className="space-y-3">
-                        {service.features.map((feature, i) => (
-                          <li
-                            key={i}
-                            className="flex items-center gap-2 text-muted-foreground"
-                          >
-                            <CheckCircle2 className="h-5 w-5 text-primary" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <Button className="w-full mt-8">Learn More</Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </GradientBorder>
-            ))}
+            {LANDING_PAGE_CONTENT.services.items.map((service, index) => {
+              const ServiceIcon = serviceIcons[service.title];
+              return (
+                <GradientBorder key={index}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.6 + index * 0.2,
+                    }}
+                    className="flex"
+                  >
+                    <Card className="h-full bg-card w-full">
+                      <CardContent className="pt-6 p-8">
+                        <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary text-primary-foreground mx-auto">
+                          <ServiceIcon className="h-8 w-8" />
+                        </div>
+                        <h3 className="mt-6 text-2xl font-semibold text-foreground text-center">
+                          {service.title}
+                        </h3>
+                        <p className="mt-4 text-muted-foreground text-center text-lg">
+                          {service.desc}
+                        </p>
+                        <Separator className="my-6" />
+                        <ul className="space-y-3">
+                          {service.features.map((feature, i) => (
+                            <li
+                              key={i}
+                              className="flex items-center gap-2 text-muted-foreground"
+                            >
+                              <CheckCircle2 className="h-5 w-5 text-primary" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <Button className="w-full mt-8">Learn More</Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </GradientBorder>
+              );
+            })}
           </motion.div>
         </div>
       </div>
@@ -158,7 +143,7 @@ export const LandingPage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-4xl font-bold text-foreground"
             >
-              The Tech Fix Pro Difference
+              {LANDING_PAGE_CONTENT.features.title}
             </motion.h2>
           </div>
           <motion.div
@@ -167,53 +152,35 @@ export const LandingPage = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {[
-              {
-                icon: Clock3,
-                title: "Same-Day Service",
-                desc: "Most repairs completed within hours",
-              },
-              {
-                icon: ShieldIcon,
-                title: "Lifetime Warranty",
-                desc: "All repairs backed by our guarantee",
-              },
-              {
-                icon: WrenchIcon,
-                title: "Certified Experts",
-                desc: "Factory-trained technicians",
-              },
-              {
-                icon: StarIcon,
-                title: "5-Star Service",
-                desc: "Consistently top-rated in Seattle",
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.4 + index * 0.2,
-                }}
-                className="flex"
-              >
-                <Card className="bg-card hover:shadow-lg transition-all duration-300 w-full">
-                  <CardContent className="pt-6 p-8 text-center">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary/10 text-primary mx-auto">
-                      <feature.icon className="h-8 w-8" />
-                    </div>
-                    <h3 className="mt-6 text-xl font-semibold text-foreground">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-4 text-muted-foreground text-lg">
-                      {feature.desc}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {LANDING_PAGE_CONTENT.features.items.map((feature, index) => {
+              const FeatureIcon = featureIcons[feature.title];
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.4 + index * 0.2,
+                  }}
+                  className="flex"
+                >
+                  <Card className="bg-card hover:shadow-lg transition-all duration-300 w-full">
+                    <CardContent className="pt-6 p-8 text-center">
+                      <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-primary/10 text-primary mx-auto">
+                        <FeatureIcon className="h-8 w-8" />
+                      </div>
+                      <h3 className="mt-6 text-xl font-semibold text-foreground">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-4 text-muted-foreground text-lg">
+                        {feature.desc}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </div>
@@ -231,7 +198,7 @@ export const LandingPage = () => {
               transition={{ duration: 0.5 }}
               className="text-4xl font-bold text-primary-foreground"
             >
-              Ready to fix your device?
+              {LANDING_PAGE_CONTENT.cta.title}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -239,7 +206,7 @@ export const LandingPage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4 text-xl text-primary-foreground/90"
             >
-              Get a free diagnostic consultation today
+              {LANDING_PAGE_CONTENT.cta.subtitle}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -253,7 +220,7 @@ export const LandingPage = () => {
                 className="gap-2 text-lg h-12"
               >
                 <PhoneIcon className="h-5 w-5" />
-                Call Now: {PHONE_NUMBER}
+                Call Now: {COMPANY_CONTENT.phone}
               </Button>
               <Button size="lg" className="gap-2 text-lg h-12">
                 Book Online
