@@ -1,49 +1,82 @@
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        console.log("Fetching reviews..."); // Moved console.log here
+        setLoading(true);
         const response = await fetch("/api/google-reviews");
+        if (!response.ok) {
+          throw new Error("Failed to fetch reviews");
+        }
         const data = await response.json();
-
-        console.log("Received data:", data); // Add this to debug
         setReviews(data.reviews || []);
       } catch (error) {
         console.error("Error fetching reviews:", error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchReviews();
-  }, []); // Empty dependency array since we only want to fetch once
-
-  // Add this outside useEffect to see the current state
-  console.log("Current reviews state:", reviews);
+  }, []);
 
   const renderStars = (rating) => {
     return [...Array(5)].map((_, i) => (
       <Star
         key={i}
-        className={`h-4 w-4 ${
-          i < rating ? "text-primary fill-primary" : "text-muted"
-        }`}
+        className={cn("h-4 w-4", {
+          "text-yellow-400 fill-yellow-400": i < rating,
+          "text-gray-300": i >= rating,
+        })}
       />
     ));
   };
 
-  // Changed the conditional rendering to handle loading state better
   if (loading) {
     return (
       <div className="py-24 bg-background">
-        <div className="text-center">Loading reviews...</div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-pulse space-y-8">
+              <div className="h-8 w-64 bg-muted rounded mx-auto"></div>
+              <div className="h-4 w-96 bg-muted rounded mx-auto"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(3)].map((_, i) => (
+                  <Card key={i} className="h-48">
+                    <CardContent className="p-6">
+                      <div className="space-y-4">
+                        <div className="h-4 bg-muted rounded w-3/4"></div>
+                        <div className="h-4 bg-muted rounded w-1/2"></div>
+                        <div className="h-4 bg-muted rounded w-5/6"></div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-red-500">
+            Failed to load reviews. Please try again later.
+          </p>
+        </div>
       </div>
     );
   }
@@ -66,7 +99,10 @@ export const GoogleReviews = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reviews.map((review, index) => (
-            <Card key={index} className="h-full">
+            <Card
+              key={index}
+              className="h-full hover:shadow-lg transition-shadow duration-300"
+            >
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <img

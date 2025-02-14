@@ -9,9 +9,13 @@ export async function GET() {
 
     const data = await response.json();
 
+    const bestReviews = data.result.reviews.filter(
+      (review) => review.rating >= 4
+    );
+
     return new Response(
       JSON.stringify({
-        reviews: data.result.reviews || [],
+        reviews: bestReviews || [],
       }),
       {
         status: 200,
