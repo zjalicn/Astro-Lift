@@ -4,11 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { contactPage, company } from "@/content";
+import { CONTACT_PAGE_CONTENT, COMPANY_CONTENT } from "@/content";
 
 export const ContactPage = () => {
-  const { hero, form, info } = contactPage;
-  const { address, phone, email, hours } = company;
+  const { hero, form, info } = CONTACT_PAGE_CONTENT;
+  const { address, phone, email, hours } = COMPANY_CONTENT;
   const fullAddress = `${address.street}, ${address.city}, ${address.state} ${address.zip}`;
 
   return (
