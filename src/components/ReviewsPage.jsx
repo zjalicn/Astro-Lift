@@ -59,7 +59,7 @@ export const ReviewsPage = () => {
                     {[...Array(review.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        className="h-5 w-5 text-primary fill-current"
+                        className="h-5 w-5 text-yellow-300 fill-yellow-300"
                       />
                     ))}
                   </div>

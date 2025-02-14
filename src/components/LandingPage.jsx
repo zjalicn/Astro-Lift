@@ -10,17 +10,16 @@ import {
   LaptopIcon,
   SmartphoneIcon,
   WifiIcon,
-  MapPinIcon,
-  MailIcon,
-  Clock3Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { GradientBorder } from "./GradientBorder";
-import HeroCarousel from "./HeroCarousel";
-import ContactSection from "./ContactSection";
+import { GradientBorder } from "@/components/ui/GradientBorder";
+import HeroCarousel from "@/components/landing-page/HeroCarousel";
+import ContactSection from "@/components/landing-page/ContactSection";
+import { GoogleReviews } from "@/components/landing-page/GoogleReviews";
+import { PHONE_NUMBER } from "@/constants";
 
 export const LandingPage = () => {
   return (
@@ -219,6 +218,8 @@ export const LandingPage = () => {
         </div>
       </div>
 
+      <GoogleReviews client:load />
+
       {/* CTA Section */}
       <div className="relative overflow-hidden bg-primary">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-background opacity-90"></div>
@@ -252,7 +253,7 @@ export const LandingPage = () => {
                 className="gap-2 text-lg h-12"
               >
                 <PhoneIcon className="h-5 w-5" />
-                Call Now: (555) 123-4567
+                Call Now: {PHONE_NUMBER}
               </Button>
               <Button size="lg" className="gap-2 text-lg h-12">
                 Book Online

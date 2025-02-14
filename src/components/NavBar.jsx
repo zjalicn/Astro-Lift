@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,10 +8,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
 export const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,33 +21,46 @@ export const NavBar = () => {
       setIsScrolled(scrollPosition > 0);
     };
 
+    setCurrentPath(window.location.pathname);
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogoClick = (e) => {
+    if (currentPath === "/") {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
-    { name: "Reviews", href: "/reviews" },
+    // { name: "Reviews", href: "/reviews" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background shadow-md" : ""
-      }`}
+      className={cn("fixed w-full z-50 transition-all duration-300", {
+        "bg-background shadow-md": isScrolled,
+      })}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          {/* Logo/Brand */}
-          <div
+          {/* Logo/Brand with conditional click behavior */}
+          <a
             className="flex-shrink-0 flex items-center cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            href="/"
+            onClick={handleLogoClick}
           >
             <img src={logo.src} alt="Tech Fix Pro" className="h-10" />
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-4">
@@ -53,9 +68,16 @@ export const NavBar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className={`hover:text-primary/90 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isScrolled ? "text-foreground" : "text-white"
-                }`}
+                className={cn(
+                  "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                  {
+                    "text-white hover:text-white/80":
+                      currentPath === "/" && !isScrolled,
+                    "text-foreground hover:text-primary":
+                      currentPath === "/" && isScrolled,
+                    "text-foreground hover:text-primary": currentPath !== "/",
+                  }
+                )}
               >
                 {item.name}
               </a>
@@ -72,7 +94,13 @@ export const NavBar = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={isScrolled ? "" : "text-white hover:bg-white/10"}
+                  className={cn({
+                    "text-white hover:text-white/80":
+                      currentPath === "/" && !isScrolled,
+                    "text-foreground hover:text-primary":
+                      currentPath === "/" && isScrolled,
+                    "text-secondary hover:text-primary": currentPath !== "/",
+                  })}
                 >
                   <Menu className="h-6 w-6" />
                 </Button>
@@ -86,7 +114,7 @@ export const NavBar = () => {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="text-foreground hover:text-primary px-3 py-2 rounded-md text-base font-medium"
+                      className="text-secondary hover:text-primary px-3 py-2 rounded-md text-base font-medium"
                     >
                       {item.name}
                     </a>

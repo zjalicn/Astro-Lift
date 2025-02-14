@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { PHONE_NUMBER, EMAIL } from "@/constants";
 
 export const ContactPage = () => {
   return (
@@ -60,14 +61,12 @@ export const ContactPage = () => {
               <div className="flex items-center">
                 <PhoneIcon className="h-6 w-6 text-primary" />
                 <span className="ml-3 text-foreground-secondary">
-                  (555) 123-4567
+                  {PHONE_NUMBER}
                 </span>
               </div>
               <div className="flex items-center">
                 <MailIcon className="h-6 w-6 text-primary" />
-                <span className="ml-3 text-foreground-secondary">
-                  help@techfixpro.com
-                </span>
+                <span className="ml-3 text-foreground-secondary">{EMAIL}</span>
               </div>
               <div className="flex items-center">
                 <ClockIcon className="h-6 w-6 text-primary" />

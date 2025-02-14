@@ -1,6 +1,12 @@
 import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import { Clock3Icon } from "lucide-react";
-import React from "react";
+
+const API_KEY = import.meta.env.PUBLIC_GOOGLE_API_KEY;
+const PLACE_ID = import.meta.env.PUBLIC_GOOGLE_PLACE_ID;
+
+console.log(
+  `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=place_id:${PLACE_ID}&zoom=15`
+);
 
 const ContactSection = () => {
   return (
@@ -10,7 +16,7 @@ const ContactSection = () => {
           {/* Map */}
           <div className="relative h-[400px] bg-muted rounded-lg overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=YOUR_EMBED_URL"
+              src={`https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=place_id:${PLACE_ID}&zoom=15`}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -18,11 +24,6 @@ const ContactSection = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-            <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-              <p className="text-white text-lg font-medium">
-                Google Maps Integration
-              </p>
-            </div>
           </div>
 
           {/* Contact Info */}
