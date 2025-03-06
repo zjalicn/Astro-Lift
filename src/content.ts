@@ -1,5 +1,11 @@
 import { WifiIcon, SmartphoneIcon, LaptopIcon } from "lucide-react";
 
+// TEAM MEMBER IMAGES
+import johnSmith from "@/assets/team/john-smith.jpeg";
+import sarahJohnson from "@/assets/team/sarah-johnson.jpeg";
+import chadMichaelson from "@/assets/team/chad-michaelson.jpeg";
+import mrGrumpypants from "@/assets/team/mr-grumpypants.jpeg";
+
 // Company Info
 export const COMPANY_CONTENT = {
   name: "Tech Fix Pro",
@@ -102,11 +108,25 @@ export const ABOUT_PAGE_CONTENT = {
       name: "John Smith",
       role: "Lead Technician",
       certifications: ["CompTIA A+", "Apple Certified"],
+      image: johnSmith.src,
     },
     {
       name: "Sarah Johnson",
       role: "Network Specialist",
       certifications: ["Cisco CCNA", "Microsoft Certified"],
+      image: sarahJohnson.src,
+    },
+    {
+      name: "Chad Michaelson",
+      role: "Lead Technician",
+      certifications: ["CompTIA A+", "Apple Certified"],
+      image: chadMichaelson.src,
+    },
+    {
+      name: "Mr. Grumpypants",
+      role: "Network Specialist",
+      certifications: ["Cisco CCNA", "Microsoft Certified"],
+      image: mrGrumpypants.src,
     },
   ],
 };

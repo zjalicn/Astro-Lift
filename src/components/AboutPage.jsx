@@ -68,10 +68,7 @@ export const AboutPage = () => {
           {team.map((member, index) => (
             <div key={index} className="text-center">
               <img
-                src={`/api/placeholder/150/150?initials=${member.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}`}
+                src={member.image}
                 alt={member.name}
                 className="w-48 h-48 rounded-full mx-auto mb-6"
               />
