@@ -1,8 +1,8 @@
 import { MailIcon, MapPinIcon, PhoneIcon, Clock3Icon } from "lucide-react";
 import { COMPANY_CONTENT } from "@/content";
 
-const API_KEY = import.meta.env.PUBLIC_GOOGLE_API_KEY;
-const PLACE_ID = import.meta.env.PUBLIC_GOOGLE_PLACE_ID;
+const API_KEY = import.meta.env.GOOGLE_API_KEY;
+const PLACE_ID = import.meta.env.GOOGLE_PLACE_ID;
 
 const ContactSection = () => {
   const { name, phone, email, address, hours } = COMPANY_CONTENT;
