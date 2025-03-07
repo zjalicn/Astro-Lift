@@ -10,6 +10,8 @@ import {
   LaptopIcon,
   SmartphoneIcon,
   WifiIcon,
+  CheckCircleIcon,
+  CalendarCheckIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -188,44 +190,90 @@ export const LandingPage = () => {
       <GoogleReviews client:load />
 
       {/* CTA Section */}
-      <div className="relative overflow-hidden bg-primary">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-background opacity-90"></div>
-        <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+      <div className="relative overflow-hidden bg-primary py-24">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary to-background opacity-95"></div>
+
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-primary-foreground/10 blur-3xl"></div>
+            <div className="absolute top-1/2 -right-48 w-96 h-96 rounded-full bg-primary-foreground/5 blur-3xl"></div>
+          </div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl font-bold text-primary-foreground"
+              transition={{
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="text-4xl md:text-5xl font-extrabold text-primary-foreground"
             >
               {LANDING_PAGE_CONTENT.cta.title}
             </motion.h2>
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-4 text-xl text-primary-foreground/90"
+              transition={{
+                duration: 0.6,
+                delay: 0.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-6 text-xl text-primary-foreground/95 max-w-2xl mx-auto leading-relaxed"
             >
               {LANDING_PAGE_CONTENT.cta.subtitle}
             </motion.p>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
+              className="mt-10 flex flex-col sm:flex-row justify-center gap-5"
             >
               <Button
                 size="lg"
                 variant="secondary"
-                className="gap-2 text-lg h-12"
+                className="gap-3 text-lg font-medium h-14 px-6 shadow-lg transition-transform hover:scale-105 hover:shadow-xl group"
               >
-                <PhoneIcon className="h-5 w-5" />
-                Call Now: {COMPANY_CONTENT.phone}
+                <div className="bg-secondary-foreground/10 p-2 rounded-full group-hover:bg-secondary-foreground/20 transition-colors">
+                  <PhoneIcon className="h-5 w-5" />
+                </div>
+                <span>
+                  <span className="text-sm block opacity-80">Call Now</span>
+                  <span className="font-bold">{COMPANY_CONTENT.phone}</span>
+                </span>
               </Button>
-              <Button size="lg" className="gap-2 text-lg h-12">
+
+              <Button
+                size="lg"
+                className="gap-3 text-lg font-medium h-14 px-6 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-primary-foreground hover:text-primary"
+              >
                 Book Online
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="mt-10 pt-8 border-t border-primary-foreground/10 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-primary-foreground/80"
+            >
+              <div className="flex items-center">
+                <CheckCircleIcon className="h-4 w-4 mr-2" />
+                <span>No Waiting Time</span>
+              </div>
+              <div className="flex items-center">
+                <CalendarCheckIcon className="h-4 w-4 mr-2" />
+                <span>Same-Day Appointments</span>
+              </div>
+              <div className="flex items-center">
+                <StarIcon className="h-4 w-4 mr-2" />
+                <span>5-Star Service Guaranteed</span>
+              </div>
             </motion.div>
           </div>
         </div>

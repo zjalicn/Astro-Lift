@@ -1,6 +1,6 @@
 # 🌒 Astro Lift
 
-Created this Astro template as a light weight solution for building static websites for businesses with beautiful uis
+Created this Astro template as a light weight solution for building static websites for businesses with beautiful UIs
 
 ## 🌟 Requirements
 

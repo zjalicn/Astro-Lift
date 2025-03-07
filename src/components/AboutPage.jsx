@@ -70,7 +70,7 @@ export const AboutPage = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-48 h-48 rounded-full mx-auto mb-6"
+                className="w-48 h-48 object-cover rounded-full mx-auto mb-6 border-2 border-primary-foreground shadow-xl shadow-black/20"
               />
               <h3 className="text-2xl font-semibold text-foreground mb-2">
                 {member.name}

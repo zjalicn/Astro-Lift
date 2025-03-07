@@ -186,7 +186,7 @@ export const CONTACT_PAGE_CONTENT = {
     subtitle: "We're here to help with all your tech needs",
   },
   form: {
-    title: "Send us a message",
+    title: "Contact Form",
     fields: {
       name: "Your name",
       email: "your@email.com",
