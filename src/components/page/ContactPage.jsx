@@ -8,13 +8,7 @@ import {
   UserIcon,
 } from "lucide-react";
 import { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -22,8 +16,24 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CONTACT_PAGE_CONTENT, COMPANY_CONTENT } from "@/content";
 
-const API_KEY = import.meta.env.GOOGLE_API_KEY;
-const PLACE_ID = import.meta.env.GOOGLE_PLACE_ID;
+const FAQ = [
+  {
+    q: "What are your response times?",
+    a: "We aim to respond to all inquiries within 24 business hours.",
+  },
+  {
+    q: "Do you offer emergency support?",
+    a: "Yes, for urgent matters please call our support line directly.",
+  },
+  {
+    q: "Can I schedule an in-person meeting?",
+    a: "Absolutely! Use this form to request an appointment or call us directly.",
+  },
+  {
+    q: "What information should I include in my message?",
+    a: "Please include your name, contact information, and details about your inquiry.",
+  },
+];
 
 export const ContactPage = () => {
   const { hero, form, info } = CONTACT_PAGE_CONTENT;
@@ -282,15 +292,7 @@ export const ContactPage = () => {
             {/* Map Card */}
             <Card className="shadow-lg border-border/50 overflow-hidden">
               <div className="w-full h-64 bg-primary/10 flex items-center justify-center">
-                <iframe
-                  src={`https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=place_id:${PLACE_ID}&zoom=15`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                <GoogleMaps />
               </div>
             </Card>
           </div>
@@ -308,24 +310,7 @@ export const ContactPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              {
-                q: "What are your response times?",
-                a: "We aim to respond to all inquiries within 24 business hours.",
-              },
-              {
-                q: "Do you offer emergency support?",
-                a: "Yes, for urgent matters please call our support line directly.",
-              },
-              {
-                q: "Can I schedule an in-person meeting?",
-                a: "Absolutely! Use this form to request an appointment or call us directly.",
-              },
-              {
-                q: "What information should I include in my message?",
-                a: "Please include your name, contact information, and details about your inquiry.",
-              },
-            ].map((faq, index) => (
+            {FAQ.map((faq, index) => (
               <Card
                 key={index}
                 className="shadow-sm hover:shadow transition-shadow"

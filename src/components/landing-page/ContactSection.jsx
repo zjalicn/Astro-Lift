@@ -1,8 +1,6 @@
 import { MailIcon, MapPinIcon, PhoneIcon, Clock3Icon } from "lucide-react";
 import { COMPANY_CONTENT } from "@/content";
-
-const API_KEY = import.meta.env.GOOGLE_API_KEY;
-const PLACE_ID = import.meta.env.GOOGLE_PLACE_ID;
+import { GoogleMaps } from "@/components/GoogleMaps";
 
 const ContactSection = () => {
   const { name, phone, email, address, hours } = COMPANY_CONTENT;
@@ -13,15 +11,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Map */}
           <div className="relative h-[400px] bg-muted rounded-lg overflow-hidden">
-            <iframe
-              src={`https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=place_id:${PLACE_ID}&zoom=15`}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <GoogleMaps />
           </div>
 
           {/* Contact Info */}

@@ -1,11 +1,8 @@
+const GOOGLE_REVIEWS_URL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${APP_CONFIG.GOOGLE.PLACE_ID}&fields=reviews&key=${APP_CONFIG.GOOGLE.API_KEY}`;
+
 export async function GET() {
   try {
-    const API_KEY = import.meta.env.GOOGLE_API_KEY;
-    const PLACE_ID = import.meta.env.GOOGLE_PLACE_ID;
-
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${API_KEY}`
-    );
+    const response = await fetch(GOOGLE_REVIEWS_URL);
 
     const data = await response.json();
 
