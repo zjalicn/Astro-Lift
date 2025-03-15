@@ -1,5 +1,4 @@
 import { WifiIcon, SmartphoneIcon, LaptopIcon } from "lucide-react";
-
 // TEAM MEMBER IMAGES
 import johnSmith from "@/assets/team/john-smith.jpeg";
 import sarahJohnson from "@/assets/team/sarah-johnson.jpeg";
@@ -9,6 +8,8 @@ import mrGrumpypants from "@/assets/team/mr-grumpypants.jpeg";
 // Company Info
 export const COMPANY_CONTENT = {
   name: "Tech Fix Pro",
+  description:
+    "Creating high-quality audio plugins, sample packs, and tutorials for music producers and sound designers.",
   phone: "(555) 123-4567",
   email: "info@techfixpro.com",
   address: {
@@ -21,6 +22,12 @@ export const COMPANY_CONTENT = {
     weekday: "9:00 AM - 7:00 PM",
     saturday: "10:00 AM - 5:00 PM",
     sunday: "Closed",
+  },
+  social: {
+    twitter: "https://twitter.com/techfixpro",
+    instagram: "https://www.instagram.com/techfixpro",
+    facebook: "https://www.facebook.com/techfixpro",
+    youtube: "https://www.youtube.com/techfixpro",
   },
 };
 

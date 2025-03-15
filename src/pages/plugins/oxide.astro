@@ -1,0 +1,255 @@
+---
+import { Download, Play } from "lucide-react";
+import AltLayout from "@/layouts/AltLayout.astro";
+import {
+  FEATURES,
+  TESTIMONIALS,
+  KEY_FEATURES,
+  SPECIFICATIONS,
+} from "./oxide.content";
+import "./animations.css";
+import PLUGIN_IMAGE from "@/assets/oxide.png";
+
+const PLUGIN_NAME = "Oxide";
+const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
+                saturation with repeating echoes; colored by five different distortion
+                algorithms, reliable filtering, and volume pulsing effects to create
+                unique 3D spaces in your mixes.`;
+---
+
+<AltLayout title={`${PLUGIN_NAME} VST - Download`}>
+  <main class="bg-black text-white">
+    <section class="w-full py-16 overflow-hidden relative">
+      <!-- Background animated waveform pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <svg
+          class="w-full h-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            id="wave1"
+            d="M0,50 C30,60 70,40 100,50 L100,100 L0,100 Z"
+            fill="#333333"></path>
+          <path
+            id="wave2"
+            d="M0,50 C20,30 80,70 100,50 L100,100 L0,100 Z"
+            fill="#222222"></path>
+        </svg>
+      </div>
+
+      <div class="container px-4 md:px-6 relative z-10">
+        <div class="items-center">
+          <div class="space-y-4 flex flex-col items-center gap-8">
+            <h1 class="text-4xl font-bold tracking-tighter animate-fade-in">
+              {PLUGIN_NAME}
+            </h1>
+
+            <div
+              class="rounded-lg overflow-hidden border mx-16 shadow-2xl transform hover:scale-105 transition-transform duration-500 group"
+            >
+              <img
+                src={PLUGIN_IMAGE.src}
+                alt={`${PLUGIN_NAME} VST`}
+                width="700"
+                height="320"
+                class="object-cover w-full group-hover:brightness-110 transition-all duration-500"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              >
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-8">
+              <p
+                class="text-zinc-400 md:text-xl w-full md:w-[70%] px-16 md:px-0 text-center animate-slide-up"
+              >
+                {PLUGIN_DESCRIPTION}
+              </p>
+
+              <a
+                href="#download"
+                class="inline-flex h-10 items-center justify-center rounded-md bg-zinc-800 px-8 text-sm font-medium text-zinc-50 shadow transition-all hover:bg-zinc-700 max-w-fit animate-pulse-subtle"
+              >
+                <Download className="h-5 w-5 mr-2" />
+                Download Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-16 bg-black">
+      <div class="container px-4 md:px-6">
+        <div
+          class="mx-auto max-w-3xl space-y-4 text-center gap-16 flex flex-col items-center"
+        >
+          <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
+            What is {PLUGIN_NAME}?
+          </h2>
+          <p class="text-zinc-400 md:text-lg p-0 reveal-on-scroll">
+            {PLUGIN_NAME} is a distorted delay plugin that combines analog-style
+            saturation with repeating echoes; colored by five different distortion
+            algorithms, reliable filtering, and volume pulsing effects to create
+            unique 3D spaces in your mixes.
+          </p>
+          <div class="grid gap-16 text-left md:grid-cols-2 px-4">
+            <div class="space-y-2 reveal-on-scroll">
+              <h3 class="text-xl font-bold pb-4 flex items-center">
+                Key Features
+              </h3>
+              <ul class="space-y-2 px-4">
+                {
+                  KEY_FEATURES.map((feature) => (
+                    <li class="flex items-center">
+                      <span class="inline-block w-2 h-2 bg-zinc-200 rounded-full mr-2" />
+                      {feature}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <div class="space-y-2 reveal-on-scroll">
+              <h3 class="text-xl font-bold pb-4 flex items-center">
+                Specifications
+              </h3>
+              <ul class="space-y-2 px-4">
+                {
+                  SPECIFICATIONS.map((spec) => (
+                    <li class="flex items-center">
+                      <span class="inline-block w-2 h-2 bg-zinc-200 rounded-full mr-2" />
+                      {spec}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Icons Section -->
+    <section class="w-full py-16 bg-black">
+      <div class="container px-4 md:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-16 text-center">
+          {
+            FEATURES.map(({ icon: Icon, title, description, delay }, index) => (
+              <div
+                class="p-6 flex flex-col items-center reveal-on-scroll"
+                style={delay > 0 ? `animation-delay: ${delay}s;` : ""}
+              >
+                <div
+                  class={`h-16 w-16 rounded-full bg-zinc-800 flex items-center justify-center mb-4 animate-float-${(index % 4) + 1}`}
+                >
+                  <Icon className="h-8 w-8 text-zinc-200" />
+                </div>
+                <h3 class="font-bold">{title}</h3>
+                <p class="text-sm text-zinc-400">{description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-16">
+      <div class="container px-4 md:px-6">
+        <div class="mx-auto max-w-3xl space-y-8 text-center">
+          <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
+            Preview
+          </h2>
+          <p class="text-zinc-400 reveal-on-scroll">
+            See {PLUGIN_NAME} in action
+          </p>
+        </div>
+        <div class="mx-auto max-w-3xl mt-16 reveal-on-scroll">
+          <div
+            class="relative aspect-video overflow-hidden rounded-lg border border-zinc-800 shadow-xl"
+          >
+            <div class="absolute inset-0 flex items-center justify-center z-10">
+              <button
+                class="inline-flex h-16 w-16 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900/90 text-zinc-50 shadow-sm transition-all hover:bg-zinc-800"
+              >
+                <Play className="h-8 w-8" />
+                <span class="sr-only">Play video</span>
+              </button>
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+            >
+            </div>
+            <iframe
+              class="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/WZCX-RmJN1s?si=gHYSlRkPyVpZlf0m"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section with Horizontal Scroll -->
+    <section class="w-full py-16 pt-32 bg-black">
+      <div class="container px-4 md:px-6">
+        <div class="mx-auto max-w-5xl">
+          <h2
+            class="text-4xl font-bold tracking-tighter mb-16 text-center reveal-on-scroll"
+          >
+            What People Are Saying
+          </h2>
+
+          <div class="testimonials-scroll-container">
+            <!-- Gradient fades on sides -->
+            <div class="testimonials-fade-left"></div>
+            <div class="testimonials-fade-right"></div>
+
+            <!-- Scrolling testimonials -->
+            <div class="testimonials-scroll hide-scrollbar">
+              {
+                TESTIMONIALS.map(({ quote, author }, index) => (
+                  <div
+                    class="testimonial-card reveal-on-scroll"
+                    style={`animation-delay: ${index * 0.15}s;`}
+                  >
+                    <p class="italic">"{quote}"</p>
+                    <p class="font-bold mt-4">- {author}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="w-full py-64 relative overflow-hidden">
+      <div class="container px-4 md:px-6 relative z-10">
+        <div class="mx-auto max-w-3xl space-y-8 text-center">
+          <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
+            Ready?
+          </h2>
+          <p class="text-zinc-400 md:text-lg reveal-on-scroll">
+            Download {PLUGIN_NAME} now and start making amazing music today.
+          </p>
+          <div class="flex justify-center pt-4 reveal-on-scroll">
+            <a
+              href="#"
+              class="inline-flex h-12 items-center justify-center rounded-md bg-zinc-800 px-8 text-sm font-medium text-zinc-50 shadow-lg transition-all hover:bg-zinc-700 animate-pulse-subtle"
+            >
+              <Download className="h-5 w-5 mr-2" />
+              Download Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./animations.ts"></script>
+</AltLayout>

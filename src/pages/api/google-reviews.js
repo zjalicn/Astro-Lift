@@ -1,3 +1,5 @@
+import { APP_CONFIG } from "@/config";
+
 const GOOGLE_REVIEWS_URL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${APP_CONFIG.GOOGLE.PLACE_ID}&fields=reviews&key=${APP_CONFIG.GOOGLE.API_KEY}`;
 
 export async function GET() {

@@ -1,0 +1,586 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const COMPANY_NAME = "createdbyniko.";
+
+const NAV_ITEMS = [
+  {
+    label: "Plugins",
+    href: "/plugins",
+    hasDropdown: true,
+    dropdownItems: [
+      { label: "Oxide", href: "/plugins/oxide" },
+      { label: "Rupture", href: "/plugins/rupture" },
+    ],
+  },
+  {
+    label: "Samples",
+    href: "/samples",
+    hasDropdown: false,
+  },
+  {
+    label: "Tutorials",
+    href: "/tutorials",
+    hasDropdown: false,
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | {COMPANY_NAME}</title>
+    <meta
+      name="description"
+      content="Audio plugins and resources for music producers"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="flex min-h-screen flex-col">
+      <header class="border-b border-zinc-800 sticky top-0 z-50 bg-black">
+        <div
+          class="container flex h-16 items-center justify-between px-4 md:px-6"
+        >
+          <a href="/" class="flex items-center gap-2 font-bold relative">
+            <span class="text-xl">{COMPANY_NAME}</span>
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full logo-underline"
+            ></span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center space-x-6">
+            {
+              NAV_ITEMS.map((item) => (
+                <div class="relative group">
+                  <a
+                    href={item.href}
+                    class="text-primary hover:text-zinc-200 text-sm font-medium transition-colors flex items-center"
+                  >
+                    {item.label}
+                    {item.hasDropdown && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    )}
+                  </a>
+
+                  {item.hasDropdown && (
+                    <div class="absolute left-0 mt-2 w-48 origin-top-left rounded-md bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible transition-all duration-200 z-50">
+                      <div class="py-2 px-1">
+                        {item.dropdownItems?.map((dropdownItem) => (
+                          <a
+                            href={dropdownItem.href}
+                            class="block px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-md mx-1 transition-colors"
+                          >
+                            {dropdownItem.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))
+            }
+          </nav>
+
+          <!-- Mobile menu button -->
+          <button
+            id="mobile-menu-button"
+            class="md:hidden p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-200 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="menu-icon"
+            >
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="close-icon hidden"
+            >
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div
+          id="mobile-menu"
+          class="md:hidden bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 hidden"
+        >
+          <nav class="container py-4 px-4 space-y-4">
+            {
+              NAV_ITEMS.map((item) => (
+                <div>
+                  <div class="flex items-center justify-between">
+                    <a
+                      href={item.hasDropdown ? "#" : item.href}
+                      class="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white text-sm font-medium py-2"
+                    >
+                      {item.label}
+                    </a>
+                    {item.hasDropdown && (
+                      <button class="mobile-dropdown-toggle p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="h-4 w-4 transition-transform duration-200"
+                        >
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+
+                  {item.hasDropdown && (
+                    <div class="mobile-dropdown pl-4 pb-2 hidden border-l border-zinc-200 dark:border-zinc-800 ml-3 space-y-2 mt-1">
+                      {item.dropdownItems?.map((dropdownItem) => (
+                        <a
+                          href={dropdownItem.href}
+                          class="block py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                        >
+                          {dropdownItem.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            }
+            <div class="pt-2 border-t border-zinc-200 dark:border-zinc-800">
+              <button
+                id="mobile-theme-toggle"
+                class="flex items-center py-2 text-sm text-zinc-700 dark:text-zinc-300"
+              >
+                <span>Toggle theme</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ml-2 hidden dark:block"
+                >
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="m4.93 4.93 1.41 1.41"></path>
+                  <path d="m17.66 17.66 1.41 1.41"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="m6.34 17.66-1.41 1.41"></path>
+                  <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ml-2 block dark:hidden"
+                >
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer class="border-t border-zinc-200 bg-black py-12">
+        <div class="container px-4 md:px-6">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+            <div class="md:col-span-2">
+              <a href="/" class="inline-block mb-4">
+                <span class="text-xl font-bold">{COMPANY_NAME}</span>
+              </a>
+              <p class="text-zinc-200 max-w-md">
+                Creating high-quality audio plugins, sample packs, and tutorials
+                for music producers and sound designers.
+              </p>
+              <div class="flex space-x-4 mt-6">
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-white hover:text-zinc-900 transition-colors"
+                >
+                  <span class="sr-only">Twitter</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+                    ></path>
+                  </svg>
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-white hover:text-zinc-200 transition-colors"
+                >
+                  <span class="sr-only">Instagram</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"
+                    ></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                    ></path>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+                >
+                  <span class="sr-only">YouTube</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
+                    ></path>
+                    <path d="m10 15 5-3-5-3z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3
+                class="text-sm font-semibold text-zinc-900 dark:text-white mb-4"
+              >
+                Products
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="/plugins/oxide"
+                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                    >Oxide VST</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/plugins/rupture"
+                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                    >Rupture VST</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/samples"
+                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                    >Sample Packs</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-sm font-semibold text-zinc-900 dark:text-white mb-4"
+              >
+                Resources
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="/tutorials"
+                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                    >Tutorials</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/support"
+                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                    >Support</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="border-t border-zinc-200 dark:border-zinc-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+          >
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm">
+              © {new Date().getFullYear()}
+              {COMPANY_NAME} All rights reserved.
+            </p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+              <a
+                href="/privacy"
+                class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                >Privacy</a
+              >
+              <a
+                href="/terms"
+                class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
+                >Terms</a
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Theme toggle functionality
+      function setupThemeToggle() {
+        const themeToggles = [
+          document.getElementById("theme-toggle"),
+          document.getElementById("mobile-theme-toggle"),
+        ];
+
+        themeToggles.forEach((toggle) => {
+          if (!toggle) return;
+
+          toggle.addEventListener("click", () => {
+            document.documentElement.classList.toggle("dark");
+            localStorage.setItem(
+              "theme",
+              document.documentElement.classList.contains("dark")
+                ? "dark"
+                : "light"
+            );
+          });
+        });
+
+        // Set initial theme based on localStorage or system preference
+        if (
+          localStorage.getItem("theme") === "dark" ||
+          (!localStorage.getItem("theme") &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }
+
+      // Mobile menu functionality
+      function setupMobileMenu() {
+        const menuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.querySelector(".menu-icon");
+        const closeIcon = document.querySelector(".close-icon");
+
+        if (!menuButton || !mobileMenu) return;
+
+        menuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+          menuIcon?.classList.toggle("hidden");
+          closeIcon?.classList.toggle("hidden");
+        });
+
+        // Setup mobile dropdown toggles
+        const dropdownToggles = document.querySelectorAll(
+          ".mobile-dropdown-toggle"
+        );
+
+        dropdownToggles.forEach((toggle) => {
+          toggle.addEventListener("click", () => {
+            const dropdown = toggle.closest("div")?.nextElementSibling;
+            if (dropdown) {
+              dropdown.classList.toggle("hidden");
+              toggle.querySelector("svg")?.classList.toggle("rotate-180");
+            }
+          });
+        });
+      }
+
+      // Logo animation
+      function setupLogoAnimation() {
+        const logo = document.querySelector(".logo-underline");
+        if (!logo) return;
+
+        const logoLink = logo.parentElement;
+
+        logoLink?.addEventListener("mouseenter", () => {
+          logo.classList.add("w-full");
+        });
+
+        logoLink?.addEventListener("mouseleave", () => {
+          logo.classList.remove("w-full");
+        });
+      }
+
+      // Initialize all functionality when the DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        setupThemeToggle();
+        setupMobileMenu();
+        setupLogoAnimation();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background: #fff;
+    color: #111;
+  }
+
+  html.dark {
+    background: #111;
+    color: #fff;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Smooth transitions between light and dark mode */
+  body,
+  a,
+  button {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not(.light) {
+      background: #111;
+      color: #fff;
+    }
+  }
+
+  /* Custom dropdown animation */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .group:hover .group-hover\:animate-slideDown {
+    animation: slideDown 0.2s ease forwards;
+  }
+</style>
