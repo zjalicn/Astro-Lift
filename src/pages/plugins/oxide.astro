@@ -7,7 +7,9 @@ import {
   KEY_FEATURES,
   SPECIFICATIONS,
 } from "./oxide.content";
+import "./oxide.css";
 import "./animations.css";
+import "./scroll-snap.css"; // Import the new CSS file
 import PLUGIN_IMAGE from "@/assets/oxide.png";
 
 const PLUGIN_NAME = "Oxide";
@@ -19,7 +21,7 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
 
 <AltLayout title={`${PLUGIN_NAME} VST - Download`}>
   <main class="bg-black text-white">
-    <section class="w-full py-16 overflow-hidden relative">
+    <section class="w-full overflow-hidden relative">
       <!-- Background animated waveform pattern -->
       <div class="absolute inset-0 opacity-10">
         <svg
@@ -70,7 +72,7 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
 
               <a
                 href="#download"
-                class="inline-flex h-10 items-center justify-center rounded-md bg-zinc-800 px-8 text-sm font-medium text-zinc-50 shadow transition-all hover:bg-zinc-700 max-w-fit animate-pulse-subtle"
+                class="inline-flex h-10 items-center justify-center rounded-md bg-plugin-primary px-8 text-sm font-medium text-zinc-50 shadow transition-all hover:bg-plugin-primary-hover max-w-fit animate-pulse-subtle"
               >
                 <Download className="h-5 w-5 mr-2" />
                 Download Now
@@ -81,7 +83,7 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
       </div>
     </section>
 
-    <section class="w-full py-16 bg-black">
+    <section class="w-full bg-black">
       <div class="container px-4 md:px-6">
         <div
           class="mx-auto max-w-3xl space-y-4 text-center gap-16 flex flex-col items-center"
@@ -132,8 +134,13 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
     </section>
 
     <!-- Feature Icons Section -->
-    <section class="w-full py-16 bg-black">
+    <section class="w-full bg-black">
       <div class="container px-4 md:px-6">
+        <h2
+          class="text-4xl font-bold tracking-tighter mb-16 text-center reveal-on-scroll"
+        >
+          Features
+        </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-16 text-center">
           {
             FEATURES.map(({ icon: Icon, title, description, delay }, index) => (
@@ -144,7 +151,7 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
                 <div
                   class={`h-16 w-16 rounded-full bg-zinc-800 flex items-center justify-center mb-4 animate-float-${(index % 4) + 1}`}
                 >
-                  <Icon className="h-8 w-8 text-zinc-200" />
+                  <Icon className="h-8 w-8 text-plugin-primary" />
                 </div>
                 <h3 class="font-bold">{title}</h3>
                 <p class="text-sm text-zinc-400">{description}</p>
@@ -155,7 +162,7 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
       </div>
     </section>
 
-    <section class="w-full py-16">
+    <section class="w-full">
       <div class="container px-4 md:px-6">
         <div class="mx-auto max-w-3xl space-y-8 text-center">
           <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
@@ -195,7 +202,7 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
     </section>
 
     <!-- Testimonials Section with Horizontal Scroll -->
-    <section class="w-full py-16 pt-32 bg-black">
+    <section class="w-full bg-black">
       <div class="container px-4 md:px-6">
         <div class="mx-auto max-w-5xl">
           <h2
@@ -228,19 +235,19 @@ const PLUGIN_DESCRIPTION = `A distorted delay plugin that combines analog-style
       </div>
     </section>
 
-    <section id="download" class="w-full py-64 relative overflow-hidden">
+    <section id="download" class="w-full relative overflow-hidden">
       <div class="container px-4 md:px-6 relative z-10">
         <div class="mx-auto max-w-3xl space-y-8 text-center">
           <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
             Ready?
           </h2>
           <p class="text-zinc-400 md:text-lg reveal-on-scroll">
-            Download {PLUGIN_NAME} now and start making amazing music today.
+            Download {PLUGIN_NAME} now and start using it in your music today.
           </p>
           <div class="flex justify-center pt-4 reveal-on-scroll">
             <a
               href="#"
-              class="inline-flex h-12 items-center justify-center rounded-md bg-zinc-800 px-8 text-sm font-medium text-zinc-50 shadow-lg transition-all hover:bg-zinc-700 animate-pulse-subtle"
+              class="inline-flex h-12 items-center justify-center rounded-md bg-plugin-primary px-8 text-sm font-medium text-zinc-50 shadow-lg transition-all hover:bg-plugin-primary-hover animate-pulse-subtle"
             >
               <Download className="h-5 w-5 mr-2" />
               Download Now

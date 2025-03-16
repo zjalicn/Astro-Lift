@@ -1,0 +1,20 @@
+:root {
+  --primary-color: #e73c0c;
+  --primary-color-hover: #ff4d23;
+}
+
+.bg-plugin-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-plugin-primary:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.text-plugin-primary {
+  color: var(--primary-color);
+}
+
+.section-indicator a.active {
+  background-color: var(--primary-color-hover);
+}

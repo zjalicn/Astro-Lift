@@ -1,8 +1,103 @@
+// Add this interface to handle the scrollResumeTimeout property
+interface ScrollResumeWindow extends Window {
+  scrollResumeTimeout?: ReturnType<typeof setTimeout>;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();
   animateBackgroundWaves();
   setupTestimonialScroll();
+  setupSectionNavigation(); // Add this new function call
 });
+
+/**
+ * Sets up section navigation dots and observers
+ */
+function setupSectionNavigation(): void {
+  // Get all sections
+  const sections = document.querySelectorAll("main > section");
+
+  // Create navigation indicators
+  createNavigationDots(sections.length);
+
+  // Set up intersection observer to track active section
+  setupSectionObserver(sections);
+}
+
+function createNavigationDots(numSections: number): void {
+  // Create navigation container
+  const nav = document.createElement("div");
+  nav.className = "section-indicator";
+
+  // Create a dot for each section
+  for (let i = 0; i < numSections; i++) {
+    const dot = document.createElement("a");
+    dot.href = `#section-${i}`;
+    dot.setAttribute("data-index", i.toString());
+
+    // Make first dot active by default
+    if (i === 0) {
+      dot.className = "active";
+    }
+
+    // Add click event to scroll to section
+    dot.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetSection = document.querySelector(`#section-${i}`);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    nav.appendChild(dot);
+  }
+
+  // Add to document
+  document.body.appendChild(nav);
+}
+
+function setupSectionObserver(sections: NodeListOf<Element>): void {
+  // Add IDs to sections if they don't have them
+  sections.forEach((section, index) => {
+    if (!section.id) {
+      section.id = `section-${index}`;
+    }
+  });
+
+  // Create intersection observer
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Get section index from id
+          const sectionId = entry.target.id;
+          const sectionIndex = sectionId.split("-")[1];
+
+          // Update active navigation dot
+          updateActiveNavDot(sectionIndex);
+        }
+      });
+    },
+    {
+      threshold: 0.5, // Section is considered visible when 50% is in viewport
+    }
+  );
+
+  // Observe all sections
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+}
+
+function updateActiveNavDot(activeIndex: string): void {
+  const dots = document.querySelectorAll(".section-indicator a");
+  dots.forEach((dot) => {
+    dot.classList.remove("active");
+    if (dot.getAttribute("data-index") === activeIndex) {
+      dot.classList.add("active");
+    }
+  });
+}
 
 /**
  * Sets up the reveal-on-scroll animation for elements
@@ -106,8 +201,11 @@ function setupTestimonialScroll() {
   container.addEventListener("wheel", () => {
     stopScrolling();
     // Resume after some time of inactivity
-    clearTimeout((window as any).scrollResumeTimeout);
-    (window as any).scrollResumeTimeout = setTimeout(() => {
+    const customWindow = window as unknown as ScrollResumeWindow;
+    if (customWindow.scrollResumeTimeout) {
+      clearTimeout(customWindow.scrollResumeTimeout);
+    }
+    customWindow.scrollResumeTimeout = setTimeout(() => {
       if (!isHovering) {
         startScrolling();
       }
@@ -120,8 +218,11 @@ function setupTestimonialScroll() {
 
   container.addEventListener("touchend", () => {
     // Resume after some time of inactivity
-    clearTimeout((window as any).scrollResumeTimeout);
-    (window as any).scrollResumeTimeout = setTimeout(() => {
+    const customWindow = window as unknown as ScrollResumeWindow;
+    if (customWindow.scrollResumeTimeout) {
+      clearTimeout(customWindow.scrollResumeTimeout);
+    }
+    customWindow.scrollResumeTimeout = setTimeout(() => {
       if (!isHovering) {
         startScrolling();
       }
