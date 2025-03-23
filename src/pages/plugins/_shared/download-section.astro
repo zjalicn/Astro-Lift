@@ -1,0 +1,32 @@
+---
+import { Download } from "lucide-react";
+
+interface Props {
+  pluginName: string;
+  downloadUrl?: string;
+}
+
+const { pluginName, downloadUrl = "#" } = Astro.props;
+---
+
+<section id="download" class="w-full relative overflow-hidden">
+  <div class="container px-4 md:px-6 relative z-10">
+    <div class="mx-auto max-w-3xl space-y-8 text-center">
+      <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
+        Ready?
+      </h2>
+      <p class="text-zinc-400 md:text-lg reveal-on-scroll">
+        Download {pluginName} now and start using it in your music today.
+      </p>
+      <div class="flex justify-center pt-4 reveal-on-scroll">
+        <a
+          href={downloadUrl}
+          class="inline-flex h-12 items-center justify-center rounded-md bg-plugin-primary px-8 text-sm font-medium text-zinc-50 shadow-lg transition-all hover:bg-plugin-primary-hover animate-pulse-subtle"
+        >
+          <Download className="h-5 w-5 mr-2" />
+          Download Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

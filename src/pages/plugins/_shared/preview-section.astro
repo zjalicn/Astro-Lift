@@ -1,0 +1,49 @@
+---
+import { Play } from "lucide-react";
+
+interface Props {
+  pluginName: string;
+  youtubeEmbedUrl: string;
+}
+
+const { pluginName, youtubeEmbedUrl } = Astro.props;
+---
+
+<section class="w-full">
+  <div class="container px-4 md:px-6">
+    <div class="mx-auto max-w-3xl space-y-8 text-center">
+      <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
+        Preview
+      </h2>
+      <p class="text-zinc-400 reveal-on-scroll">
+        See {pluginName} in action
+      </p>
+    </div>
+    <div class="mx-auto max-w-3xl mt-16 reveal-on-scroll">
+      <div
+        class="relative aspect-video overflow-hidden rounded-lg border border-zinc-800 shadow-xl"
+      >
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+          <button
+            class="inline-flex h-16 w-16 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900/90 text-zinc-50 shadow-sm transition-all hover:bg-zinc-800"
+          >
+            <Play className="h-8 w-8" />
+            <span class="sr-only">Play video</span>
+          </button>
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+        >
+        </div>
+        <iframe
+          class="absolute inset-0 w-full h-full"
+          src={youtubeEmbedUrl}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>

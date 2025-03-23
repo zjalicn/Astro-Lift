@@ -1,0 +1,45 @@
+---
+interface Testimonial {
+  quote: string;
+  author: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<section class="w-full bg-black">
+  <div class="container px-4 md:px-6">
+    <div class="mx-auto max-w-5xl">
+      <h2
+        class="text-4xl font-bold tracking-tighter mb-16 text-center reveal-on-scroll"
+      >
+        What People Are Saying
+      </h2>
+
+      <div class="testimonials-scroll-container">
+        <!-- Gradient fades on sides -->
+        <div class="testimonials-fade-left"></div>
+        <div class="testimonials-fade-right"></div>
+
+        <!-- Scrolling testimonials -->
+        <div class="testimonials-scroll hide-scrollbar">
+          {
+            testimonials.map(({ quote, author }, index) => (
+              <div
+                class="testimonial-card reveal-on-scroll"
+                style={`animation-delay: ${index * 0.15}s;`}
+              >
+                <p class="italic">"{quote}"</p>
+                <p class="font-bold mt-4">- {author}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

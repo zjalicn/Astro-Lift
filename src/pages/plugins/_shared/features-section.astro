@@ -1,0 +1,42 @@
+---
+interface Feature {
+  icon: any; // Lucide icon component
+  title: string;
+  description: string;
+  delay?: number;
+}
+
+interface Props {
+  features: Feature[];
+}
+
+const { features } = Astro.props;
+---
+
+<section class="w-full bg-black">
+  <div class="container px-4 md:px-6">
+    <h2
+      class="text-4xl font-bold tracking-tighter mb-16 text-center reveal-on-scroll"
+    >
+      Features
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-16 text-center">
+      {
+        features.map(({ icon: Icon, title, description, delay }, index) => (
+          <div
+            class="p-6 flex flex-col items-center reveal-on-scroll"
+            style={delay ? `animation-delay: ${delay}s;` : ""}
+          >
+            <div
+              class={`h-16 w-16 rounded-full bg-zinc-800 flex items-center justify-center mb-4 animate-float-${(index % 4) + 1}`}
+            >
+              <Icon className="h-8 w-8 text-plugin-primary" />
+            </div>
+            <h3 class="font-bold">{title}</h3>
+            <p class="text-sm text-zinc-400">{description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

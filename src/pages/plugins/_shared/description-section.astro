@@ -1,0 +1,56 @@
+---
+interface Props {
+  pluginName: string;
+  pluginDescription: string;
+  keyFeatures: string[];
+  specifications: string[];
+}
+
+const { pluginName, pluginDescription, keyFeatures, specifications } =
+  Astro.props;
+---
+
+<section class="w-full bg-black">
+  <div class="container px-4 md:px-6">
+    <div
+      class="mx-auto max-w-3xl space-y-4 text-center gap-16 flex flex-col items-center"
+    >
+      <h2 class="text-4xl font-bold tracking-tighter reveal-on-scroll">
+        What is {pluginName}?
+      </h2>
+      <p class="text-zinc-400 md:text-lg p-0 reveal-on-scroll">
+        {pluginDescription}
+      </p>
+      <div class="grid gap-16 text-left md:grid-cols-2 px-4">
+        <div class="space-y-2 reveal-on-scroll">
+          <h3 class="text-xl font-bold pb-4 flex items-center">Key Features</h3>
+          <ul class="space-y-2">
+            {
+              keyFeatures.map((feature) => (
+                <li class="flex items-center">
+                  <span class="inline-block w-2 h-2 bg-zinc-200 rounded-full mr-2" />
+                  {feature}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="space-y-2 reveal-on-scroll">
+          <h3 class="text-xl font-bold pb-4 flex items-center">
+            Specifications
+          </h3>
+          <ul class="space-y-2">
+            {
+              specifications.map((spec) => (
+                <li class="flex items-center">
+                  <span class="inline-block w-2 h-2 bg-zinc-200 rounded-full mr-2" />
+                  {spec}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
