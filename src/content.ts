@@ -7,7 +7,7 @@ import mrGrumpypants from "@/assets/team/mr-grumpypants.jpeg";
 
 // Company Info
 export const COMPANY_CONTENT = {
-  name: "Tech Fix Pro",
+  name: "createdbyniko.",
   description:
     "Creating high-quality audio plugins, sample packs, and tutorials for music producers and sound designers.",
   phone: "(555) 123-4567",

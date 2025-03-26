@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Old English Hearts";
+  src: url("../assets/fonts/old_english_hearts.ttf") format("truetype");
+}
+
+.font-special {
+  font-family: "Old English Hearts", cursive;
+  font-size: 8rem;
+  text-shadow: 2px 2px 4px rgba(84, 84, 84, 0.5);
+  line-height: 1;
+}

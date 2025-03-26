@@ -1,92 +1,74 @@
 ---
+import AltLayout from "@/layouts/AltLayout.astro";
+import OxideImage from "@/assets/oxide.png";
+
 const products = [
   {
     title: "Product One",
-    image: "/images/product-1.jpg",
+    image: OxideImage.src,
     url: "/products/product-one",
   },
   {
     title: "Product Two",
-    image: "/images/product-2.jpg",
+    image: OxideImage.src,
     url: "/products/product-two",
   },
   {
     title: "Product Three",
-    image: "/images/product-3.jpg",
+    image: OxideImage.src,
     url: "/products/product-three",
   },
   {
     title: "Product Four",
-    image: "/images/product-4.jpg",
+    image: OxideImage.src,
     url: "/products/product-four",
   },
   {
     title: "Product Five",
-    image: "/images/product-5.jpg",
+    image: OxideImage.src,
     url: "/products/product-five",
-  },
-  {
-    title: "Product Six",
-    image: "/images/product-6.jpg",
-    url: "/products/product-six",
   },
 ];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Showcase</title>
-  </head>
-  <body class="font-sans text-gray-800 bg-gray-50">
-    <main>
-      <section class="bg-white py-16 mb-8">
-        <div class="w-11/12 max-w-6xl mx-auto px-4">
-          <h1
-            class="text-4xl md:text-5xl font-bold mb-4 text-center text-blue-600"
-          >
-            Our Products
-          </h1>
-          <p class="text-xl text-center max-w-2xl mx-auto text-gray-600">
-            Discover our amazing collection of high-quality products
-          </p>
-        </div>
-      </section>
-
-      <section class="py-8">
-        <div class="w-11/12 max-w-6xl mx-auto px-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {
-              products.map((product) => (
-                <a
-                  href={product.url}
-                  class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
-                >
-                  <div class="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <h2 class="p-4 text-xl font-semibold text-center">
-                    {product.title}
-                  </h2>
-                </a>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="bg-white py-8 mt-16 text-center">
+<AltLayout title={`Samples`}>
+  <main>
+    <section class="py-16 mb-8">
       <div class="w-11/12 max-w-6xl mx-auto px-4">
-        <p>
-          &copy; {new Date().getFullYear()} Your Company Name. All rights reserved.
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center">
+          Sample Packs
+        </h1>
+        <p class="text-xl text-center max-w-2xl mx-auto">
+          Improve your production with our amazing collection of high-quality
+          samples
         </p>
       </div>
-    </footer>
-  </body>
-</html>
+    </section>
+
+    <section class="py-8">
+      <div class="w-11/12 max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            products.map((product) => (
+              <a
+                href={product.url}
+                class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+              >
+                <div class="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <h2 class="p-4 text-xl font-semibold text-center">
+                  {product.title}
+                </h2>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</AltLayout>

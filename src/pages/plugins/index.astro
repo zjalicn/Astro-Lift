@@ -1,0 +1,101 @@
+---
+import AltLayout from "@/layouts/AltLayout.astro";
+import { Separator } from "@/components/ui/separator";
+
+import OxideImage from "@/assets/oxide.png";
+import RuptureImage from "@/assets/rupture.png";
+import FragmentsImage from "@/assets/oxide.png";
+import AuraImage from "@/assets/rupture.png";
+
+const plugins = [
+  {
+    title: "Oxide",
+    image: OxideImage,
+    url: "/plugins/oxide",
+    description:
+      "A powerful oxidation plugin that enhances your workflow with advanced rendering capabilities and performance optimization.",
+    primaryColor: "orange",
+    borderColorClass: "hover:border-orange-500",
+  },
+  {
+    title: "Rupture",
+    image: RuptureImage,
+    url: "/plugins/rupture",
+    description:
+      "The ultimate solution for seamless breakpoints and responsive design with intelligent adaptive layouts.",
+    primaryColor: "purple",
+    borderColorClass: "hover:border-purple-500",
+  },
+  // {
+  //   title: "Fragments",
+  //   image: FragmentsImage,
+  //   url: "/plugins/fragments",
+  //   description:
+  //     "A plugin that allows you to create and manage fragments of your project.",
+  //   primaryColor: "blue",
+  //   borderColorClass: "hover:border-blue-500",
+  // },
+  // {
+  //   title: "Aura",
+  //   image: AuraImage,
+  //   url: "/plugins/aura",
+  //   description:
+  //     "Improve your workflow with a plugin that allows you to create and manage auras for your project.",
+  //   primaryColor: "green",
+  //   borderColorClass: "hover:border-green-500",
+  // },
+];
+---
+
+<AltLayout title={`Plugins`}>
+  <main>
+    <section class="py-16 mb-8">
+      <div class="w-11/12 max-w-6xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center">Plugins</h1>
+        <p class="text-xl text-center max-w-2xl mx-auto">
+          Download our collection of plugins
+        </p>
+      </div>
+    </section>
+
+    <section class="py-8 mb-32">
+      <div class="w-11/12 max-w-6xl mx-auto px-4">
+        <div class="flex flex-col gap-8">
+          {
+            plugins.map((plugin) => (
+              <a
+                href={plugin.url}
+                class={`border-2 border-zinc-200 rounded-xl overflow-hidden ${plugin.borderColorClass} transition-colors duration-300 flex flex-col md:flex-row`}
+              >
+                <div class="w-full md:w-1/3 aspect-[16/10] overflow-hidden bg-transparent">
+                  <img
+                    src={plugin.image.src}
+                    alt={plugin.title}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div
+                  class={`p-8 pt-0 flex flex-col justify-center w-full md:w-2/3 ${
+                    plugin.primaryColor === "orange"
+                      ? "text-orange-500"
+                      : plugin.primaryColor === "purple"
+                        ? "text-purple-500"
+                        : plugin.primaryColor === "blue"
+                          ? "text-blue-500"
+                          : "text-green-500"
+                  }`}
+                >
+                  <h2 class="mb-3 font-special">{plugin.title}</h2>
+                  <Separator className="mb-4 bg-zinc-500" />
+                  <p class="text-white leading-relaxed line-clamp-3">
+                    {plugin.description}
+                  </p>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</AltLayout>

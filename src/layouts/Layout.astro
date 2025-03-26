@@ -3,12 +3,13 @@ import "../styles/global.css";
 import { NavBar } from "../components/NavBar";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { InitialLoadingScreen } from "../components/InitialLoadingScreen";
+import { COMPANY_CONTENT } from "@/content";
 
 interface Props {
   title?: string;
 }
 
-const { title = "Tech Fix Pro" } = Astro.props;
+const { title = COMPANY_CONTENT.name } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,27 +17,30 @@ const { title = "Tech Fix Pro" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href={'/favicon.ico?v=1'} />
+    <link rel="icon" type="image/x-icon" href={"/favicon.ico?v=1"} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
       // Initialize theme
       const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
         }
-        return 'light';
+        return "light";
       })();
-    
-      if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
       } else {
-        document.documentElement.classList.add('dark');
+        document.documentElement.classList.add("dark");
       }
-      
+
       window.localStorage.setItem("theme", theme);
     </script>
   </head>

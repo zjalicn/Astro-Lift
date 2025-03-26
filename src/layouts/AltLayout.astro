@@ -1,11 +1,13 @@
 ---
+import "../styles/fonts.css";
+
+import { COMPANY_CONTENT } from "@/content";
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-
-const COMPANY_NAME = "createdbyniko.";
 
 const NAV_ITEMS = [
   {
@@ -15,6 +17,8 @@ const NAV_ITEMS = [
     dropdownItems: [
       { label: "Oxide", href: "/plugins/oxide" },
       { label: "Rupture", href: "/plugins/rupture" },
+      { label: "Fragments", href: "/plugins/fragments" },
+      { label: "Aura", href: "/plugins/aura" },
     ],
   },
   {
@@ -37,17 +41,26 @@ const NAV_ITEMS = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | {COMPANY_NAME}</title>
-    <meta
-      name="description"
-      content="Audio plugins and resources for music producers"
-    />
+    <title>{title} | {COMPANY_CONTENT.name}</title>
+    <meta name="description" content={COMPANY_CONTENT.description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      @font-face {
+        font-family: "Old English Hearts";
+        src: url("../assets/fonts/old_english_hearts.ttf") format("truetype");
+      }
+
+      .font-special {
+        font-family: "Old English Hearts", cursive;
+        font-size: 8rem;
+        text-shadow: 2px 2px 4px rgba(84, 84, 84, 0.5);
+      }
+    </style>
   </head>
   <body>
     <div class="flex min-h-screen flex-col">
@@ -56,7 +69,7 @@ const NAV_ITEMS = [
           class="container flex h-16 items-center justify-between px-4 md:px-6"
         >
           <a href="/" class="flex items-center gap-2 font-bold relative">
-            <span class="text-xl">{COMPANY_NAME}</span>
+            <span class="text-xl">{COMPANY_CONTENT.name}</span>
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full logo-underline"
             ></span>
@@ -256,11 +269,10 @@ const NAV_ITEMS = [
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
             <div class="md:col-span-2">
               <a href="/" class="inline-block mb-4">
-                <span class="text-xl font-bold">{COMPANY_NAME}</span>
+                <span class="text-xl font-bold">{COMPANY_CONTENT.name}</span>
               </a>
               <p class="text-zinc-200 max-w-md">
-                Creating high-quality audio plugins, sample packs, and tutorials
-                for music producers and sound designers.
+                {COMPANY_CONTENT.description}
               </p>
               <div class="flex space-x-4 mt-6">
                 <a
@@ -315,7 +327,7 @@ const NAV_ITEMS = [
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+                  class="text-white hover:text-zinc-200 transition-colors"
                 >
                   <span class="sr-only">YouTube</span>
                   <svg
@@ -338,84 +350,72 @@ const NAV_ITEMS = [
               </div>
             </div>
             <div>
-              <h3
-                class="text-sm font-semibold text-zinc-900 dark:text-white mb-4"
-              >
-                Products
+              <h3 class="text-sm font-bold underline text-white mb-4">
+                Downloads
               </h3>
               <ul class="space-y-3">
-                <li>
-                  <a
-                    href="/plugins/oxide"
-                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                    >Oxide VST</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/plugins/rupture"
-                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                    >Rupture VST</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/samples"
-                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                    >Sample Packs</a
-                  >
-                </li>
+                {
+                  [
+                    { href: "/samples", label: "Samples" },
+                    { href: "/plugins", label: "Plugins" },
+                  ].map((link) => (
+                    <li>
+                      <a
+                        href={link.href}
+                        class="text-white hover:text-zinc-200 text-sm transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
             <div>
-              <h3
-                class="text-sm font-semibold text-zinc-900 dark:text-white mb-4"
-              >
+              <h3 class="text-sm font-bold text-white underline mb-4">
                 Resources
               </h3>
               <ul class="space-y-3">
-                <li>
-                  <a
-                    href="/tutorials"
-                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                    >Tutorials</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/support"
-                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                    >Support</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/contact"
-                    class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                    >Contact</a
-                  >
-                </li>
+                {
+                  [
+                    { href: "/tutorials", label: "Tutorials" },
+                    { href: "/support", label: "Support" },
+                    { href: "/terms", label: "Terms" },
+                  ].map((link) => (
+                    <li>
+                      <a
+                        href={link.href}
+                        class="text-white hover:text-zinc-200 text-sm transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
           </div>
           <div
             class="border-t border-zinc-200 dark:border-zinc-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
           >
-            <p class="text-zinc-500 dark:text-zinc-400 text-sm">
+            <p class="text-white text-sm">
               © {new Date().getFullYear()}
-              {COMPANY_NAME} All rights reserved.
+              {COMPANY_CONTENT.name} All rights reserved.
             </p>
             <div class="flex space-x-6 mt-4 md:mt-0">
-              <a
-                href="/privacy"
-                class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                >Privacy</a
-              >
-              <a
-                href="/terms"
-                class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white text-sm transition-colors"
-                >Terms</a
-              >
+              {
+                // [
+                //   { href: "/privacy", label: "Privacy" },
+                //   { href: "/terms", label: "Terms" },
+                // ].map((link) => (
+                //   <a
+                //     href={link.href}
+                //     class="text-white hover:text-zinc-200 text-sm transition-colors"
+                //   >
+                //     {link.label}
+                //   </a>
+                // ))
+              }
             </div>
           </div>
         </div>

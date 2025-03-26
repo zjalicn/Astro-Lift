@@ -1,0 +1,56 @@
+---
+import { COMPANY_CONTENT } from "@/content";
+import AltLayout from "@/layouts/AltLayout.astro";
+---
+
+<AltLayout title="Terms of Use">
+  <main class="container mx-auto px-4 py-8 max-w-3xl">
+    <h1 class="text-3xl font-bold mb-6">Terms of Use</h1>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Overview</h2>
+      <p class="mb-4">
+        Welcome to my sample pack and VST plugin site. By downloading or using
+        the content from this site, you're agreeing to these simple terms. These
+        samples and plugins are created to help musicians make awesome music.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Using My Samples & Plugins</h2>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>
+          Feel free to use all samples and VST plugins in your music, both
+          personal and commercial projects.
+        </li>
+        <li>
+          You can't resell these samples or plugins as your own products or
+          include them in your own sample packs for distribution.
+        </li>
+        <li>Credit is appreciated but not required.</li>
+      </ul>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Account Stuff</h2>
+      <p class="mb-4">
+        If you create an account, keep your password safe and don't share it.
+        You're responsible for anything that happens under your account.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Content Quality</h2>
+      <p class="mb-4">
+        I work hard to create high-quality samples and plugins, but everything
+        is provided "as is" without any warranties. If something isn't working,
+        let me know and I'll try to fix it.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold mb-2">Contact</h2>
+      <p>Questions about these terms? Contact me at {COMPANY_CONTENT.email}.</p>
+    </section>
+  </main>
+</AltLayout>
